@@ -1,9 +1,8 @@
 import { GetServerSideProps } from "next"
-
 import React, { useState } from "react"
 import { Container, Grid, Typography, IconButton } from "@material-ui/core"
-import { CardContainer, ItemCard, Layout, AddBasketDialog, LoadingBox } from "components"
-import { DeleteBasketDialog } from "components"
+import { CardContainer, ItemCard, Layout, AddBasketDialog } from "components"
+import { DeleteBasketDialog, LoadingBox } from "components"
 import { formatCurrency } from "utils/formatters"
 import { green, red } from "@material-ui/core/colors"
 import AddIcon from "@material-ui/icons/Add"
@@ -41,9 +40,7 @@ const PortfolioPage = ({ portfolioId }: Props) => {
   if (!portfolio) return <LoadingBox />
 
   return (
-    <Layout
-      title={`${portfolio ? portfolio.title : "Portfolio"} | Portfolio Tracker`}
-    >
+    <Layout title={`${portfolio ? portfolio.title : "Portfolio"} | StockHouse`}>
       <Container maxWidth={false}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
@@ -119,8 +116,6 @@ const PortfolioPage = ({ portfolioId }: Props) => {
 
 export default PortfolioPage
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return { props: { portfolioId: params.pID } }
 }

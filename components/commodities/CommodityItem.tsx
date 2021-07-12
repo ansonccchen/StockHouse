@@ -14,14 +14,21 @@ interface Props {
   name: string
   prettyname: string
   value: number
+  defaultFav?: boolean
 }
 
-const CommodityItem: React.FC<Props> = ({ cid, name, prettyname, value }) => {
+const CommodityItem: React.FC<Props> = ({
+  cid,
+  name,
+  prettyname,
+  value,
+  defaultFav = false,
+}) => {
   const classes = useStyles()
   const [spin, setSpin] = useState(false)
   const [price, setPrice] = useState(value)
   const [isClicked, setIsClicked] = useState(false)
-  const [isWatched, setIsWatched] = useState(false)
+  const [isWatched, setIsWatched] = useState(defaultFav)
 
   const refresh = async () => {
     setSpin(true)

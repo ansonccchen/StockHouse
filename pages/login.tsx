@@ -37,10 +37,11 @@ const LoginPage = () => {
               <Div row center>
                 <Div maxWidth={408}>
                   <Typography variant="h3" style={{ color: "#42B3E6" }}>
-                    Portfolio Tracker
+                    StockHouse
                   </Typography>
                   <Typography variant="h6">
-                    The best portfolio manager app out there. Track your trades and view your total net worth.
+                    The best portfolio manager app out there. Track your trades
+                    and view your total net worth.
                   </Typography>
                 </Div>
               </Div>

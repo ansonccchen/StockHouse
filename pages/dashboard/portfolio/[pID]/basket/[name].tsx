@@ -46,7 +46,7 @@ const BasketPage = ({ basketName, portfolioId }: Props) => {
   if (!basket) return <LoadingBox />
 
   return (
-    <Layout title={`${basket ? basket.name : "Basket"} | Portfolio Tracker`}>
+    <Layout title={`${basket ? basket.name : "Basket"} | StockHouse`}>
       <Container maxWidth={false}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
