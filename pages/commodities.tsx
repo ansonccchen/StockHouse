@@ -126,20 +126,26 @@ const CommoditiesPage = ({
               </Div>
             </Div>
             <CardContainer>
-              {commoditySummaries.map(commodity => {
-                return (
-                  <React.Fragment key={commodity.cid}>
-                    <CommodityItem
-                      cid={commodity?.cid}
-                      name={commodity?.name}
-                      prettyname={commodity?.prettyname}
-                      value={commodity?.value}
-                      defaultFav
-                    />
-                    <Div mv={24} h={1} backgroundColor="#dadde1" />
-                  </React.Fragment>
-                )
-              })}
+              {commoditySummaries
+                .sort((a, b) => {
+                  if (a.prettyname > b.prettyname) return 1
+                  if (a.prettyname < b.prettyname) return -1
+                  return 0
+                })
+                .map(commodity => {
+                  return (
+                    <React.Fragment key={commodity.cid}>
+                      <CommodityItem
+                        cid={commodity?.cid}
+                        name={commodity?.name}
+                        prettyname={commodity?.prettyname}
+                        value={commodity?.value}
+                        defaultFav
+                      />
+                      <Div mv={24} h={1} backgroundColor="#dadde1" />
+                    </React.Fragment>
+                  )
+                })}
             </CardContainer>
           </Grid>
           <Grid item xs={4}>
