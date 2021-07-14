@@ -122,7 +122,6 @@ const DashboardPage: FunctionComponent = () => {
               address={user.address}
               phone={user.phone}
               accounts={user.accounts}
-              accounttype={user.accounttype}
               id={user.id}
               setOpenAddAccount={setOpenAddAccount}
               setDeleteAccountId={setDeleteAccountId}

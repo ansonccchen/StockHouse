@@ -14,7 +14,6 @@ interface Props {
     postalcode: string
   }
   accounts: [any?]
-  accounttype: string
   email: string
   id: number
   phone: string
@@ -24,7 +23,6 @@ interface Props {
 
 const UserInfoCard: React.FC<Props> = ({
   accounts,
-  accounttype,
   address,
   email,
   id,
@@ -69,12 +67,12 @@ const UserInfoCard: React.FC<Props> = ({
                   justifyContent: "space-between",
                 }}
               >
-                {accounttype}
+                {account.accounttype}
                 <IconButton
                   onClick={() => {
                     setDeleteAccountId({
                       id,
-                      accounttype,
+                      accounttype: account.accounttype,
                     })
                   }}
                   size="small"
