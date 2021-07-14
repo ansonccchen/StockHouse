@@ -1,6 +1,6 @@
 # StockHouse
 
-![Home Page](/readmeimages/home.png)
+![Home Page](/readmeimages/homeV2.png)
 
 StockHouse allows users to track their financial commodities trades (stocks, cryptocurrencies, and forex). People often have a variety of different platforms that they buy/sell securities on, so this application allows users to have a single platform to log, organize, and view their assets and cumulative net worth throughout all their platforms. Everytime a user makes a trade on a platform such as through their bank, they will also record their transaction through our app.
 
@@ -42,6 +42,6 @@ navigate to http://localhost:3000 and enjoy!
 
 ## Screenshots
 
-![Dashboard](/readmeimages/dashboard.png)
-![Transactions](/readmeimages/transactions.png)
-![Commodities](/readmeimages/commodities.png)
+![Dashboard](/readmeimages/dashboardV2.png)
+![Transactions](/readmeimages/transactionsV2.png)
+![Commodities](/readmeimages/commoditiesV2.png)
