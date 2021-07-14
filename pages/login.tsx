@@ -40,8 +40,9 @@ const LoginPage = () => {
                     StockHouse
                   </Typography>
                   <Typography variant="h6">
-                    The best portfolio manager app out there. Track your trades
-                    and view your total net worth.
+                    Stocks, Crypto, Forex, Metals, Real Estate, Anything. All
+                    here. The portfolio manager that makes your life organzied
+                    and simpler.
                   </Typography>
                 </Div>
               </Div>
