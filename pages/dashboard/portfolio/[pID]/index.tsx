@@ -29,8 +29,10 @@ const PortfolioPage = ({ portfolioId }: Props) => {
     } catch (err) {
       if (err?.response?.status === 401) {
         router.push("/login")
+      } else if (err?.response?.status === 403) {
+        toast.error(err?.response?.data?.message)
       } else {
-        toast.error("failed to fetch portfolio")
+        toast.error("Failed to fetch portfolio")
       }
     }
   }

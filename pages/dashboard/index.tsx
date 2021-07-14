@@ -1,17 +1,17 @@
 import React, { FunctionComponent, useState } from "react"
 import { Container, Typography, Grid, IconButton } from "@material-ui/core"
-import { Box, colors } from "@material-ui/core"
+import { colors } from "@material-ui/core"
 import { CardContainer, Layout, ItemCard, LoadingBox } from "components"
 import { AddAccountDialog, PortfolioDialog, CommodityItem } from "components"
 import { DeletePortfolioDialog, DeleteAccountDialog } from "components"
-import { formatAddress, formatCurrency, formatPhone } from "utils/formatters"
+import { UserInfoCard } from "components"
+import { formatCurrency } from "utils/formatters"
 import axios from "axios"
 import { Portfolio } from "interfaces"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import useSWR, { mutate } from "swr"
 import AddIcon from "@material-ui/icons/Add"
-import DeleteIcon from "@material-ui/icons/Delete"
 
 const DashboardPage: FunctionComponent = () => {
   const router = useRouter()
@@ -22,10 +22,12 @@ const DashboardPage: FunctionComponent = () => {
 
   const [isAddPortfolioDialogOpen, setIsAddPortfolioDialogOpen] =
     useState(false)
-  const [portfolioActionType, setPortfolioActionType] =
-    useState<"edit" | "create">("create")
-  const [editedPortfolio, setEditedPortfolio] =
-    useState<undefined | Portfolio>(undefined)
+  const [portfolioActionType, setPortfolioActionType] = useState<
+    "edit" | "create"
+  >("create")
+  const [editedPortfolio, setEditedPortfolio] = useState<undefined | Portfolio>(
+    undefined
+  )
 
   const fetchUser = async () => {
     try {
@@ -115,70 +117,16 @@ const DashboardPage: FunctionComponent = () => {
             </CardContainer>
           </Grid>
           <Grid item xs={12} md={4}>
-            <CardContainer>
-              <Typography variant="h4" gutterBottom>
-                Information
-              </Typography>
-              <div>Email: {user.email}</div>
-              <div>Address: {formatAddress(user.address)}</div>
-              <div>Phone: {formatPhone(user.phone)}</div>
-
-              {/* Account Section */}
-              <Box
-                sx={{
-                  mt: 5,
-                  display: "flex",
-                  alignItems: "baseline",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography variant="h4" gutterBottom>
-                  Accounts
-                </Typography>
-                <IconButton onClick={() => setOpenAddAccount(true)}>
-                  <AddIcon />
-                </IconButton>
-              </Box>
-              <Grid container direction="column" spacing={2}>
-                {user.accounts.map(account => {
-                  return (
-                    <Grid key={account.id} item xs>
-                      <Typography
-                        variant="h6"
-                        style={{
-                          fontWeight: 600,
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        {account.accounttype}
-                        <IconButton
-                          onClick={() => {
-                            setDeleteAccountId({
-                              id: account.id,
-                              accounttype: account.accounttype,
-                            })
-                          }}
-                          size="small"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Typography>
-                      {account?.tradingplatforms?.map(platform => {
-                        return (
-                          <Typography>
-                            {platform.name}{" "}
-                            <a href={"//" + platform.link} target="_blank">
-                              ({platform.link})
-                            </a>
-                          </Typography>
-                        )
-                      })}
-                    </Grid>
-                  )
-                })}
-              </Grid>
-            </CardContainer>
+            <UserInfoCard
+              email={user.email}
+              address={user.address}
+              phone={user.phone}
+              accounts={user.accounts}
+              accounttype={user.accounttype}
+              id={user.id}
+              setOpenAddAccount={setOpenAddAccount}
+              setDeleteAccountId={setDeleteAccountId}
+            />
             <CardContainer>
               <Typography variant="h4">Favourite Commodities</Typography>
               <Grid container direction="column" spacing={2}>

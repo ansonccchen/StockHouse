@@ -17,8 +17,15 @@ const portfolioHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (email.length === 0) {
       res.status(401).redirect("/login")
+    } else if (!(await checkOwnsPortfolio(Number(req.query.pid), email))) {
+      return res.status(403).json({
+        message:
+          "Unauthorized to perform actions on a portfolio you do not own",
+      })
     } else if (req.method === "GET") {
-      const portfolio: Portfolio = await getPortfolioWithBaskets(Number(req.query.pid))
+      const portfolio: Portfolio = await getPortfolioWithBaskets(
+        Number(req.query.pid)
+      )
 
       res.status(200).json(portfolio)
     } else if (req.method === "DELETE") {
@@ -26,12 +33,6 @@ const portfolioHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       res.status(200).send("Portfolio successfully deleted")
     } else if (req.method === "PATCH") {
-      if (!(await checkOwnsPortfolio(Number(req.query.pid), email))) {
-        return res.status(403).json({
-          message: "Unauthorized to update a portfolio you do not own",
-        })
-      }
-
       await pool.query(updatePortfolioQuery, [
         Number(req.query.pid),
         req.body.title,
@@ -56,10 +57,12 @@ export const getPortfolioWithBaskets = async (
   const portfolio = await getPortfolio(Number(pid))
   portfolio.baskets = await getAllBaskets(portfolio.pid)
   for (const basket of portfolio.baskets) {
-    if (portfolio.initialbalance) portfolio.initialbalance += basket.initialbalance || 0
+    if (portfolio.initialbalance)
+      portfolio.initialbalance += basket.initialbalance || 0
     else portfolio.initialbalance = basket.initialbalance || 0
 
-    if (portfolio.currentbalance) portfolio.currentbalance += basket.currentbalance || 0
+    if (portfolio.currentbalance)
+      portfolio.currentbalance += basket.currentbalance || 0
     else portfolio.currentbalance = basket.currentbalance || 0
   }
 
