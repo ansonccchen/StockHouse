@@ -18,7 +18,7 @@ email: markzuckerberg@facebook.com
 
 password: password
 
-https://portfolio-tracker-nu.vercel.app/
+https://stock-house-liart.vercel.app/
 
 ## Running this app
 
