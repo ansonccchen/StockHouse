@@ -28,6 +28,11 @@ const LoginPage = () => {
     }
   }
 
+  const setTestEmail = () => {
+    setEmail("markzuckerberg@facebook.com")
+    setPassword("password")
+  }
+
   return (
     <Div minHeight="100vh">
       <Div fill justifyContentCenter>
@@ -86,7 +91,7 @@ const LoginPage = () => {
                     {isLoggingIn ? "Logging In..." : "Login"}
                   </Button>
                   <Div mv={24} h={1} backgroundColor="#dadde1" />
-                  <Div w="64%" alignSelfCenter>
+                  <Div row alignSelfCenter>
                     <Button
                       color="secondary"
                       disableRipple
@@ -95,6 +100,18 @@ const LoginPage = () => {
                       variant="contained"
                     >
                       Create Account
+                    </Button>
+                    <Div alignSelfCenter mh={4}>
+                      <Typography>OR</Typography>
+                    </Div>
+                    <Button
+                      color="secondary"
+                      disableRipple
+                      onClick={() => setTestEmail()}
+                      size="large"
+                      variant="contained"
+                    >
+                      Use Test Acc
                     </Button>
                   </Div>
                 </Div>
