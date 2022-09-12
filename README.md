@@ -12,6 +12,8 @@ Finally, as a bonus, we’ve connected our database with live stock, cryptocurre
 
 ## Demo
 
+Login currently does not work due to frozen AWS services
+
 please log in with
 
 email: markzuckerberg@facebook.com
